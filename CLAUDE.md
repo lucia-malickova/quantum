@@ -1,5 +1,16 @@
 # Lessons learned: VQE / quantum emulator pitfalls
 
+## Workflow rule: never run heavy/long computations yourself
+
+The user (Lucia) always runs the actual scripts herself (on her own Mac or
+compute environment) — this saves her tokens/cost and keeps her in control
+of her own machine. Claude's job is to write/fix the code and **navigate her
+step by step** on what to run and how to interpret output — never to run
+long or heavy computations (ADAPT-VQE optimizations, HEA optimizations,
+noise benchmarks, etc.) itself, even if it technically has a local clone
+and could. Quick, cheap sanity checks (e.g. `git rev-parse HEAD`, `ls`,
+reading a small file) are fine; anything that takes real compute time is not.
+
 Context: T1 blue-copper VQE validation project (arXiv 2609.20439, v2 correction).
 These are hard-won lessons from debugging a spin-contamination bug that affected
 the original paper's headline results. Read this before starting new quantum
